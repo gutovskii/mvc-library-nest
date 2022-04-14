@@ -1,0 +1,84 @@
+mixin book(bookData)
+	- const authorsNames = bookData.authors.map(author => author.name).join(', ')
+	
+	.book_item.col-xl-2.col-lg-2.col-md-3.col-sm-4.col-xs-6(data-book-id=bookData.id)
+		.book
+			a(href='book/' + bookData.id)
+				img(src=`./books-page/books-page_files/images/${bookData.image.fileName}` alt=bookData.title)
+				.blockI(data-title=bookData.title style='height: 46px;')
+					.title.size_text(data-book-title=bookData.title)= bookData.title 
+					.authors(data-book-authors=authorsNames)= authorsNames
+			a(href='book/' + bookData.id)
+				button.details.btn.btn-success(type='button') Читать
+
+doctype html
+html(lang='ru')
+	head
+		meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
+		title shpp-library
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		meta(name='viewport' content='width=device-width, initial-scale=1')
+		meta(name='description' content='library Sh++')
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+		link(rel='stylesheet' href='./books-page/books-page_files/style.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+		link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' crossorigin='anonymous')
+		link(rel='shortcut icon' href='/favicon.ico')
+		style.
+			.active-page {
+				color: #33D077;
+			}
+	body(data-gr-c-s-loaded='true')
+		include ../modules/header
+		
+		section#main.main-wrapper
+			.container
+				#content.row.d-flex.flex-wrap
+					if booksDataLength != 0
+						each bookData in booksDataPerPage 
+							+book(bookData)
+					else 
+						center Такие книги не найдено
+			if booksDataLength > booksPerPage
+				div.d-flex.justify-content-center
+					nav(aria-label='Page navigation example').d-flex.justify-content-center
+						ul.pagination
+							li.page-item(class = qsParams.offset <= 0 ? 'disabled' : '')
+								a.page-link(href='?' + new URLSearchParams({ 
+										...qsParams, offset: Number(qsParams.offset) - booksPerPage
+									})) Previous
+
+							- let page = 0;
+
+							while page < pageQuantity
+								li.page-item(class=qsParams.offset == booksPerPage * page ? 'active' : '')
+									a.page-link(href='?' + new URLSearchParams({ 
+										...qsParams, offset: booksPerPage * page
+									}))= ++page
+
+							li.page-item(class = qsParams.offset >= booksDataLength - booksPerPage ? 'disabled' : '')
+								a.page-link(href='?' + new URLSearchParams({ 
+										...qsParams, offset: Number(qsParams.offset) + booksPerPage
+									})) Next
+
+		include ../modules/footer
+		
+		script.
+			function clickpp(id) {
+				fetch('/api/v1/clicked/' + id, {
+					method: 'PUT'
+				})
+			}
+
+			const bookItems = $('.book_item');
+			
+			for (let i = 0; i < bookItems.length; i++) {
+				const hrefs = bookItems[i].firstElementChild.children;
+				for (let href = 0; href < hrefs.length; href++) {
+					hrefs[href].onclick = () => {
+						clickpp(bookItems[i].dataset.bookId);
+					}
+				}
+			}
+			
+ 

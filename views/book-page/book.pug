@@ -1,0 +1,84 @@
+doctype html
+html(lang='ru')
+	head
+		meta(http-equiv='Content-Type' content='text/html; charset=UTF-8')
+		title shpp-library
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		meta(name='viewport' content='width=device-width, initial-scale=1')
+		meta(name='description' content='library Sh++')
+		link(rel='stylesheet' href='../book-page/book-page_files/libs.min.css')
+		link(rel='stylesheet' href='../book-page/book-page_files/style.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js')
+		script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+		link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css' crossorigin='anonymous')
+	body(data-gr-c-s-loaded='true')
+		include ../modules/header
+
+		section#main.main-wrapper
+			.container
+				#content.book_block.col-xs-12.col-sm-12.col-md-12.col-lg-12
+					script#pattern(type='text/template').
+						<div data-book-id="{id}" class="book_item col-xs-6 col-sm-3 col-md-2 col-lg-2">
+							<div class="book">
+								<a href="/book/{id}"><img src="img/books/{id}.jpg" alt="{title}">
+									<div data-title="{title}" class="blockI">
+										<div data-book-title="{title}" class="title size_text">{title}</div>
+										<div data-book-author="{author}" class="author">{author}</div>
+									</div>
+								</a>
+								<a href="/book/{id}">
+									<button type="button" class="details btn btn-success">Читать</button>
+								</a>
+							</div>
+						</div>
+					#id(book-id=bookData.id)
+						#bookImg.col-xs-12.col-sm-3.col-md-3.item
+							img.img-responsive(src=`../books-page/books-page_files/images/${bookData.image.fileName}` alt='Responsive image')
+							hr
+						.col-xs-12.col-sm-9.col-md-9.col-lg-9.info
+							.bookInfo.col-md-12
+								#title.titleBook #{bookData.title}
+							.col-xs-12.col-sm-12.col-md-12.col-lg-12
+								.bookLastInfo
+									.bookRow
+										span.properties автор:
+										- const authorsNames = bookData.authors.map(author => author.name).join(', ')
+										span#author #{authorsNames}
+									.bookRow
+										span.properties год:
+										span#year #{bookData.year_of_publication}
+									.bookRow
+										span.properties страниц:
+										span#pages #{bookData.pages}
+									.bookRow
+										span.properties isbn:
+										span#isbn #{bookData.id}
+							.btnBlock.col-xs-12.col-sm-12.col-md-12
+								button.btnBookID.btn-lg.btn.btn-success(type='button' data-book-id=bookData.id) Хочу читать!
+							.bookDescription.col-xs-12.col-sm-12.col-md-12.hidden-xs.hidden-sm
+								h4 О книге
+								hr
+								p#description #{bookData.description}
+						.bookDescription.col-xs-12.col-sm-12.col-md-12.hidden-md.hidden-lg
+							h4 О книге
+							hr
+							p.description #{bookData.description}
+		
+		include ../modules/footer
+
+		script.
+			$('.btnBookID').click(function() {
+				fetch('/api/v1/wishful/' + this.dataset.bookId, {
+					method: 'PUT'
+				})
+				.then(res => res.json())
+				.then(res => {
+					if (res.done) {
+						Swal.fire('Отлично!', 'Книга свободна и ты можешь прийти за ней. Наш адрес: г. Кропивницкий, переулок Васильевский 10, 5 етаж. Лучше предварительно прозвонить и предупредить нас, чтобы не попасть в неловкую ситуацию. Тел. 099 196 254 69', 'success');
+					}
+				})
+				.catch(error => {
+					console.log(error);
+					Swal.fire('Упс!', 'Произошла ошибка, загляните в консоль разработчика', 'error');
+				})
+			});
