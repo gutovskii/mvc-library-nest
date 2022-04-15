@@ -6,4 +6,4 @@ import { BooksModule } from 'src/books/books.module';
   imports: [BooksModule],
   controllers: [AdminController]
 })
-export class AdminModule {} // Creation of MVC-library project with NestJS framework
+export class AdminModule {}

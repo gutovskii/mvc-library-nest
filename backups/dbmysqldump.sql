@@ -13,8 +13,8 @@
 CREATE TABLE IF NOT EXISTS `authors` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT '2022-04-14 18:58:27',
-  `updated_at` datetime NOT NULL DEFAULT '2022-04-14 18:58:27',
+  `created_at` datetime NOT NULL DEFAULT '2022-04-14 19:01:40',
+  `updated_at` datetime NOT NULL DEFAULT '2022-04-14 19:01:40',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 15 DEFAULT CHARSET = utf8mb4;
@@ -29,12 +29,12 @@ CREATE TABLE IF NOT EXISTS `books` (
   `year_of_publication` int(11) NOT NULL,
   `pages` int(11) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
-  `created_at` datetime NOT NULL DEFAULT '2022-04-14 18:58:27',
-  `updated_at` datetime NOT NULL DEFAULT '2022-04-14 18:58:27',
+  `created_at` datetime NOT NULL DEFAULT '2022-04-14 19:01:40',
+  `updated_at` datetime NOT NULL DEFAULT '2022-04-14 19:01:40',
   `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `title` (`title`)
-) ENGINE = InnoDB AUTO_INCREMENT = 14 DEFAULT CHARSET = utf8mb4;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 DEFAULT CHARSET = utf8mb4;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: books-images
@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `books-images` (
   UNIQUE KEY `fileName` (`fileName`),
   KEY `book_id` (`book_id`),
   CONSTRAINT `books-images_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 DEFAULT CHARSET = utf8mb4;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 DEFAULT CHARSET = utf8mb4;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: books-statistics
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS `books-statistics` (
   PRIMARY KEY (`id`),
   KEY `book_id` (`book_id`),
   CONSTRAINT `books-statistics_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 DEFAULT CHARSET = utf8mb4;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 DEFAULT CHARSET = utf8mb4;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: books_authors
@@ -77,7 +77,7 @@ CREATE TABLE IF NOT EXISTS `books_authors` (
   KEY `author_id` (`author_id`),
   CONSTRAINT `books_authors_ibfk_1` FOREIGN KEY (`book_id`) REFERENCES `books` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `books_authors_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `authors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 DEFAULT CHARSET = utf8mb4;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 DEFAULT CHARSET = utf8mb4;
 
 # ------------------------------------------------------------
 # SCHEMA DUMP FOR TABLE: sequelizemeta
@@ -99,8 +99,8 @@ VALUES
   (
     1,
     'Андрей Богуславский',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -108,8 +108,8 @@ VALUES
   (
     2,
     'Марк Саммерфильд',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -117,8 +117,8 @@ VALUES
   (
     3,
     'Дэвид Флэнаган',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -126,8 +126,8 @@ VALUES
   (
     4,
     'Уэс Маккинни',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -135,8 +135,8 @@ VALUES
   (
     5,
     'Брюс Эккель',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -144,8 +144,8 @@ VALUES
   (
     6,
     'Гэри Маклин Холл',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -153,8 +153,8 @@ VALUES
   (
     7,
     'Люк Веллинг',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -162,8 +162,8 @@ VALUES
   (
     8,
     'Джереми Блум',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -171,8 +171,8 @@ VALUES
   (
     9,
     'Сэмюэл Грингард',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -180,8 +180,8 @@ VALUES
   (
     10,
     'Сет Гринберг',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -189,8 +189,8 @@ VALUES
   (
     11,
     'Сергей Мастицкий',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -198,8 +198,8 @@ VALUES
   (
     12,
     'Джон Вудкок',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -207,8 +207,8 @@ VALUES
   (
     13,
     'Александр Сераков',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 INSERT INTO
   `authors` (`id`, `name`, `created_at`, `updated_at`)
@@ -216,8 +216,8 @@ VALUES
   (
     14,
     'Тим Кедлек',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27'
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40'
   );
 
 # ------------------------------------------------------------
@@ -242,8 +242,8 @@ VALUES
     2003,
     351,
     'Лекции и практикум по программированию на Си++',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -264,8 +264,8 @@ VALUES
     2015,
     198,
     'Книга про Go',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -286,8 +286,8 @@ VALUES
     2010,
     69,
     'Книга про Python для анализа данных',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -308,8 +308,8 @@ VALUES
     2012,
     212,
     'Книга про Философию Java, 4-ое издание',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -330,8 +330,8 @@ VALUES
     2009,
     253,
     'Книга про JavaScript',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -352,8 +352,8 @@ VALUES
     2013,
     352,
     'Книга про C#',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -374,8 +374,8 @@ VALUES
     2012,
     158,
     'Книга про PHP и MySQL',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -396,8 +396,8 @@ VALUES
     2008,
     176,
     'Название говорит само за себя',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -418,8 +418,8 @@ VALUES
     2015,
     145,
     'Книга про Интернет Вещей',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -440,8 +440,8 @@ VALUES
     2011,
     73,
     'Книга про создание хорошего UX',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -462,8 +462,8 @@ VALUES
     2003,
     192,
     'Книга про программу InDesign CS6',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -484,8 +484,8 @@ VALUES
     2015,
     97,
     'Книга про адаптивный дизайн',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 INSERT INTO
@@ -506,8 +506,8 @@ VALUES
     2000,
     500,
     'Книга про компьютерный кодинг для детей',
-    '2022-04-14 18:58:27',
-    '2022-04-14 18:58:27',
+    '2022-04-14 19:01:40',
+    '2022-04-14 19:01:40',
     NULL
   );
 

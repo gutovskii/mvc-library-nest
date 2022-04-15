@@ -100,7 +100,6 @@ export class BooksService {
         const authorsIds: number[] = [];
         for (let i = 0; i < dto.authorsNames.length; i++) {
             const author = await this.authorsService.getByName(dto.authorsNames[i]);
-            console.log(author);
             
             if (!author) {
                 const newAuthor = await this.authorsService.createAuthor({name: dto.authorsNames[i]});

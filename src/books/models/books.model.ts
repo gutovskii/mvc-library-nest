@@ -26,7 +26,7 @@ export class Book extends Model<Book, BooksCreateAttrs> {
     pages: number;
 
     @Column({type: DataType.STRING})
-    description: string;
+    description?: string;
 
     @BelongsToMany(() => Author, () => BooksAuthors)
     authors: Author[];

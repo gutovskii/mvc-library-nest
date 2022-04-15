@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { CreateAuthorDto } from './dto/create-author.dto';
+import { CreateAuthorDto } from './dto';
 import { Author } from './models';
 
 @Injectable()

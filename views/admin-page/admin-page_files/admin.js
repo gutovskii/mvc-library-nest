@@ -32,7 +32,7 @@ $(() => {
           }).then((result) => {
             if (result.isConfirmed) {
               fetch('http://localhost:3000/admin/api/v1/delete/' + bookId, {
-                method: 'POST'
+                method: 'DELETE'
               })
               swalWithBootstrapButtons.fire(
                 'Deleted!',
