@@ -5,10 +5,10 @@ interface Exceptions {
     constraints: string
 }
 
-export class ValidationException extends HttpException {
+export class AddBookException extends HttpException {
     errorMessages: Exceptions[];
 
-    constructor(errorMessages) {
+    constructor(errorMessages: Exceptions[]) {
         super(errorMessages, HttpStatus.BAD_REQUEST);
         this.errorMessages = errorMessages;
     }

@@ -49,8 +49,11 @@ export class BooksService {
             ...findOptions
         });
         
-        if (booksDataLength < +searchParams.offset) {
-            findOptions.offset = booksDataLength - booksPerPage;
+        if (booksDataLength <= +searchParams.offset) {
+            findOptions.offset = Math.floor(booksDataLength / booksPerPage) * booksPerPage;
+        }
+        if (findOptions.offset < 0) {
+            findOptions.offset = 0;
         }
         
         const booksDataPerPage = await this.bookRepository.findAll({

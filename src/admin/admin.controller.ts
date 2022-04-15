@@ -6,7 +6,7 @@ import { BasicAuthGuard } from 'src/auth/basic-auth.guard';
 import { BooksService } from 'src/books/books.service';
 import { AddBookDto } from 'src/books/dto';
 import { SearchParams } from 'src/books/interfaces';
-import { ValidationPipe } from 'src/pipes/validation.pipe';
+import { AddBookPipe } from 'src/pipes/add-book.pipe';
 
 @Controller('admin')
 @UseGuards(BasicAuthGuard)
@@ -29,8 +29,8 @@ export class AdminController {
         };
     }
 
-    @Post('api/v1/create')
-    @UsePipes(ValidationPipe)
+    @Post('api/v1/add')
+    @UsePipes(AddBookPipe)
     @UseInterceptors(FileInterceptor('bookImage'))
     async addBook(@Body() dto: AddBookDto,
                   @UploadedFile() image: any,
